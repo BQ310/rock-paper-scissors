@@ -22,22 +22,14 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
-function game() {
-    let player = 0;
-    for (let i = 0; i < 5; i++) {
-        let ps = prompt("Enter your move", "rock");
-        let cs = getComputerChoice();
-        let result = playRound(ps, cs);
-        player += result[0];
-        console.log(result[1]);
-    };
-    if (player < 0) {
-        console.log("You lose");
-    } else if (player > 0) {
-        console.log("You Win");
-    } else {
-        console.log("Its a draw");
-    }
-};
+const buttons = document.querySelectorAll('button');
 
-game();
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const ps = button.innerText;
+        const cs = getComputerChoice();
+        const result = playRound(ps, cs);
+        const main = document.querySelector('.main');
+        main.innerHTML = result[1];
+    })
+});
